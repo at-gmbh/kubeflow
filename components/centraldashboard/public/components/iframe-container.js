@@ -53,8 +53,11 @@ export class IframeContainer extends PolymerElement {
         iframe.addEventListener('load', () => {
             const syncIframePage = () => {
                 const iframeLocation = iframe.contentWindow.location;
-                const newIframePage = iframeLocation.href.slice(
-                    iframeLocation.origin.length);
+                // special characters within links inside iframe
+                const newIframePage = decodeURIComponent(
+                    iframeLocation.href.slice(iframeLocation.origin.length));
+
+
                 if (this.page !== newIframePage) {
                     this.page = newIframePage;
                 }
@@ -80,7 +83,7 @@ export class IframeContainer extends PolymerElement {
     _srcChanged(newSrc) {
         const iframe = this.$.iframe;
         if (iframe.contentWindow.location.toString() !== newSrc) {
-            iframe.contentWindow.location.replace(newSrc);
+            iframe.contentWindow.location.replace(decodeURIComponent(newSrc));
         }
     }
 
