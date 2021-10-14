@@ -16,9 +16,9 @@ commonLabels:
   app.kubernetes.io/component: centraldashboard
   app.kubernetes.io/name: centraldashboard
 images:
-  name: ncbkr/kf-dashboard
+  name: public.ecr.aws/j1r0q0g6/notebooks/central-dashboard
   newName: ncbkr/kf-dashboard
-  newTag: latest
+  newTag: 0.1.0dev
 configMapGenerator:
 - envs:
   - params.env
